@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JavixIDE — тема редактора</title>
+<style>
+  :root{color-scheme:dark}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0a0a14;font-family:system-ui,sans-serif;color:#e6e6e6}
+  .card{width:min(92vw,360px);padding:24px;border-radius:26px;background:linear-gradient(#1a1a38,#12122a);border:1px solid rgba(140,160,255,.3);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  h1{margin:0 0 4px;font-size:20px} p{margin:0 0 16px;opacity:.65;font-size:14px}
+  .sw{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:0 0 20px}
+  .sw i{aspect-ratio:1;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+  a.btn{display:block;text-align:center;padding:14px;border-radius:15px;background:#4c8dff;color:#06122b;font-weight:700;text-decoration:none}
+  small{display:block;margin-top:14px;opacity:.5;font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 id="name">Тема редактора</h1>
+  <p id="sub">Тема для JavixIDE</p>
+  <div class="sw" id="sw"></div>
+  <a class="btn" id="open" href="#">Открыть в JavixIDE</a>
+  <small id="hint">Если приложение не открылось — установите JavixIDE и нажмите кнопку ещё раз.</small>
+</div>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search), name=q.get('n')||'Theme', c=(q.get('c')||'').split('-');
+  var ok=c.length===12&&c.every(function(x){return /^[0-9a-fA-F]{6}$/.test(x)});
+  var en=(navigator.language||'').indexOf('ru')!==0;
+  document.documentElement.lang=en?'en':'ru';
+  document.getElementById('name').textContent=name;
+  if(en){document.getElementById('sub').textContent='Editor theme for JavixIDE';document.getElementById('open').textContent='Open in JavixIDE';document.getElementById('hint').textContent='If the app did not open, install JavixIDE and tap the button again.';}
+  if(!ok){document.getElementById('open').style.display='none';document.getElementById('sub').textContent=en?'The link is damaged':'Ссылка повреждена';return;}
+  var sw=document.getElementById('sw');c.forEach(function(x){var i=document.createElement('i');i.style.background='#'+x;sw.appendChild(i)});
+  var link='javixide://theme?n='+encodeURIComponent(name)+'&c='+c.join('-');
+  var a=document.getElementById('open');a.href=link;
+  setTimeout(function(){location.href=link},300);
+})();
+</script>
+</body>
+</html>
