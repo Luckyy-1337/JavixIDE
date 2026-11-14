@@ -2,7 +2,7 @@
   "versionCode": 161,
   "versionName": "1.6.1",
   "publishedAt": "2026-11-14",
-  "mandatory": true,
+  "mandatory": false,
   "apkUrl": "https://github.com/luckyy-1337/JavixIDE/releases/download/v1.6.0/JavixIDE-v1.6.0.apk",
   "releaseUrl": "https://github.com/luckyy-1337/JavixIDE/releases/tag/v1.6.0",
   "titleRu": "Масштабное обновление JavixIDE 1.6.0",
