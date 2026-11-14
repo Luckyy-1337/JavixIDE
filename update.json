@@ -1,28 +1,16 @@
 {
-  "versionCode": 161,
-  "versionName": "1.6.1",
-  "publishedAt": "2026-11-14",
+  "versionCode": 160,
+  "versionName": "1.6.0",
+  "publishedAt": "",
   "mandatory": false,
-  "apkUrl": "https://github.com/luckyy-1337/JavixIDE/releases/download/v1.6.0/JavixIDE-v1.6.0.apk",
-  "releaseUrl": "https://github.com/luckyy-1337/JavixIDE/releases/tag/v1.6.0",
-  "titleRu": "Масштабное обновление JavixIDE 1.6.0",
-  "titleEn": "Major Update JavixIDE 1.6.0",
+  "apkUrl": "",
+  "releaseUrl": "",
+  "titleRu": "JavixIDE 1.6.0",
+  "titleEn": "JavixIDE 1.6.0",
   "changelogRu": [
-    "Чистый .dex-компилятор без откатов в AST: нативная компиляция float, switch по String/Object, for-each по коллекциям, меток break/continue и таблиц исключений try/catch/finally",
-    "Дисковый SHA-256 кеш скомпилированных .dex-файлов для мгновенного повторного запуска скриптов",
-    "Импорт скриптов по ссылке (GitHub, Gist, Pastebin, прямые URL на .jvx/.java и быстрые ссылки javixide://script?...)",
-    "Метаданные скриптов: указание имени разработчика(-ов) и версии скрипта с отображением на карточках и сохранением в .jvx",
-    "Встроенный системный SAF-провайдер (JavixDocumentsProvider) и 3-вкладочный менеджер файлов IDE для полного доступа к папке данных на Android 11–17 без root",
-    "Автоматическая упаковка и распаковка PNG-шаблонов Image.load внутри .jvx",
-    "Фоновая автопроверка обновлений на GitHub при каждом запуске с загрузкой APK и системными уведомлениями"
+    ""
   ],
   "changelogEn": [
-    "Pure .dex bytecode compiler with zero AST fallbacks: native support for float, String/Object switch, Iterable/List for-each, labeled break/continue, and Dalvik try/catch/finally exception tables",
-    "Persistent SHA-256 disk .dex cache for instant subsequent script launches",
-    "Import scripts directly by URL/link (GitHub, Gist, Pastebin, direct .jvx/.java URLs, and compact javixide://script?... share links)",
-    "Script metadata: specify developer name(s) and script version, displayed on script cards and preserved in .jvx exports",
-    "Built-in Android SAF DocumentsProvider (JavixDocumentsProvider) and 3-tab IDE file manager for full access to app data on Android 11–17 without root",
-    "Automatic bundling and extraction of referenced Image.load PNG templates inside .jvx files",
-    "Background GitHub auto-update checker on every app launch with in-app APK downloader and system notifications"
+    ""
   ]
 }
