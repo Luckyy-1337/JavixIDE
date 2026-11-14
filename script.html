@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JavixIDE — импорт скрипта</title>
+<style>
+  :root{color-scheme:dark}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0a0a14;font-family:system-ui,sans-serif;color:#e6e6e6}
+  .card{width:min(92vw,380px);padding:24px;border-radius:26px;background:linear-gradient(#1a1a38,#12122a);border:1px solid rgba(140,160,255,.3);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  .badge{display:inline-block;padding:3px 9px;border-radius:8px;background:rgba(76,141,255,.18);border:1px solid rgba(76,141,255,.4);color:#99bbff;font-size:12px;font-weight:700;margin-bottom:10px}
+  h1{margin:0 0 6px;font-size:21px;word-break:break-word}
+  p{margin:0 0 18px;opacity:.72;font-size:14px}
+  a.btn{display:block;text-align:center;padding:14px;border-radius:15px;background:#4c8dff;color:#06122b;font-weight:700;text-decoration:none}
+  small{display:block;margin-top:14px;opacity:.5;font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="badge" id="ver">JavixIDE Script</span>
+  <h1 id="name">Скрипт JavixIDE</h1>
+  <p id="sub">Импорт скрипта в JavixIDE</p>
+  <a class="btn" id="open" href="#">Открыть и импортировать в JavixIDE</a>
+  <small id="hint">Если приложение не открылось — установите JavixIDE и нажмите кнопку ещё раз.</small>
+</div>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search),
+      name=q.get('n')||'Script',
+      author=q.get('a')||'',
+      ver=q.get('v')||'',
+      code=q.get('c')||'';
+  var en=(navigator.language||'').indexOf('ru')!==0;
+  document.documentElement.lang=en?'en':'ru';
+  document.getElementById('name').textContent=name;
+  if(ver){document.getElementById('ver').textContent='v'+ver.replace(/^v/i,'');}
+  if(author){
+    document.getElementById('sub').textContent=(en?'Developer: ':'Разработчик: ')+author;
+  }else if(en){
+    document.getElementById('sub').textContent='Import script into JavixIDE';
+  }
+  if(en){
+    document.getElementById('open').textContent='Open & Import in JavixIDE';
+    document.getElementById('hint').textContent='If the app did not open, install JavixIDE and tap the button again.';
+  }
+  if(!code){
+    document.getElementById('open').style.display='none';
+    document.getElementById('sub').textContent=en?'The script link is damaged':'Ссылка на скрипт повреждена';
+    return;
+  }
+  var link='javixide://script?'+q.toString();
+  var a=document.getElementById('open');a.href=link;
+  setTimeout(function(){location.href=link},300);
+})();
+</script>
+</body>
+</html>
