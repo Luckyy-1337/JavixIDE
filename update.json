@@ -1,16 +1,16 @@
 {
-  "versionCode": 160,
-  "versionName": "1.6.0",
+  "versionCode": 161,
+  "versionName": "1.6.1",
   "publishedAt": "2026-11-15",
-  "mandatory": false,
-  "apkUrl": "https://github.com/luckyy-1337/JavixIDE/releases/download/v1.6.0/base.apk",
-  "releaseUrl": "https://github.com/luckyy-1337/JavixIDE/releases/tag/v1.6.0",
-  "titleRu": "Обновление JavixIDE 1.6.0",
-  "titleEn": "Update JavixIDE 1.6.0",
+  "mandatory": true,
+  "apkUrl": "https://github.com/luckyy-1337/JavixIDE/releases/download/v1.6.1/JavixIDE-v1.6.1.apk",
+  "releaseUrl": "https://github.com/luckyy-1337/JavixIDE/releases/tag/v1.6.1",
+  "titleRu": "Обновление JavixIDE 1.6.1",
+  "titleEn": "JavixIDE 1.6.1 Update",
   "changelogRu": [
-    ""
+    "Аппаратная привязка арендных скриптов и ключей продления к ID устройства покупателя"
   ],
   "changelogEn": [
-    ""
+    "Hardware Device ID binding for rental scripts and renewal keys"
   ]
 }
