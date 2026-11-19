@@ -57,10 +57,13 @@ function sendJsonFrame(socket, obj) {
 
 function bindSocketReader(socket, onText, onDrop) {
   let buffer = Buffer.alloc(0);
+  let fragments = [];
+  let fragmentedOpcode = 0;
 
   socket.on("data", (chunk) => {
     buffer = Buffer.concat([buffer, chunk]);
     while (buffer.length >= 2) {
+      const fin = (buffer[0] & 0x80) !== 0;
       const opcode = buffer[0] & 0x0f;
       const masked = (buffer[1] & 0x80) !== 0;
       let length = buffer[1] & 0x7f;
@@ -96,8 +99,27 @@ function bindSocketReader(socket, onText, onDrop) {
       }
       if (opcode === 0x9) {
         writeFrame(socket, 0x0a, body);
-      } else if (opcode === 0x1 || opcode === 0x2) {
-        onText(body.toString("utf8"));
+        continue;
+      }
+      if (opcode === 0x0a) {
+        continue;
+      }
+
+      if (opcode === 0x1 || opcode === 0x2) {
+        if (fin && fragmentedOpcode === 0) {
+          onText(body.toString("utf8"));
+        } else {
+          fragmentedOpcode = opcode;
+          fragments = [Buffer.from(body)];
+        }
+      } else if (opcode === 0x0 && fragmentedOpcode !== 0) {
+        fragments.push(Buffer.from(body));
+        if (fin) {
+          const merged = Buffer.concat(fragments);
+          fragments = [];
+          fragmentedOpcode = 0;
+          onText(merged.toString("utf8"));
+        }
       }
     }
   });
