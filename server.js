@@ -6,13 +6,14 @@ const requireHttps = process.env.ALLOW_HTTP !== "1";
 const wsMagic = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
 const deviceIdPattern = /^jvx-[0-9a-f]{16}$/;
 const routePattern = /^\/u\/(jvx-[0-9a-f]{16})(\/.*)?$/;
+const wellKnownRoutePattern = /^\/(\.well-known\/[^/]+)\/u\/(jvx-[0-9a-f]{16})(\/.*)?$/;
 
 const sessions = new Map();
 
 const baseHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS, DELETE",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, Mcp-Session-Id",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, Mcp-Session-Id, Mcp-Protocol-Version",
   "Access-Control-Expose-Headers": "Mcp-Session-Id, WWW-Authenticate",
   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
 };
@@ -155,6 +156,18 @@ function normalizeHeaders(raw) {
   return out;
 }
 
+function resolveRoute(pathname) {
+  const direct = pathname.match(routePattern);
+  if (direct) {
+    return { deviceId: direct[1], path: direct[2] || "/mcp" };
+  }
+  const wk = pathname.match(wellKnownRoutePattern);
+  if (wk) {
+    return { deviceId: wk[2], path: "/" + wk[1] };
+  }
+  return null;
+}
+
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || "/", `https://${req.headers.host || "localhost"}`);
 
@@ -175,14 +188,13 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  const match = url.pathname.match(routePattern);
-  if (!match) {
+  const target = resolveRoute(url.pathname);
+  if (!target) {
     writeJson(res, 200, { ok: true });
     return;
   }
 
-  const deviceId = match[1];
-  const path = match[2] || "/mcp";
+  const { deviceId, path } = target;
   const session = sessions.get(deviceId);
 
   if (!session || !session.socket || session.socket.destroyed) {
