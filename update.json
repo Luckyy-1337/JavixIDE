@@ -1,16 +1,18 @@
 {
-  "versionCode": 161,
-  "versionName": "1.6.1",
-  "publishedAt": "2026-11-15",
-  "mandatory": true,
-  "apkUrl": "https://github.com/Luckyy-1337/JavixIDE/releases/download/v1.6.1/base.apk",
-  "releaseUrl": "https://github.com/luckyy-1337/JavixIDE/releases/tag/v1.6.1",
-  "titleRu": "Обновление JavixIDE 1.6.1",
-  "titleEn": "JavixIDE 1.6.1 Update",
+  "versionCode": 162,
+  "versionName": "1.6.2",
+  "publishedAt": "2026-11-21",
+  "mandatory": false,
+  "apkUrl": "https://github.com/Luckyy-1337/JavixIDE/releases/download/v1.6.2/base.apk",
+  "releaseUrl": "https://github.com/luckyy-1337/JavixIDE/releases/tag/v1.6.2",
+  "titleRu": "Обновление JavixIDE 1.6.2",
+  "titleEn": "JavixIDE 1.6.2 Update",
   "changelogRu": [
-    "Аппаратная привязка арендных скриптов и ключей продления к ID устройства покупателя"
+    "Добавлен встроенный MCP-сервер",
+    "Исправлены баги и улучшена стабильность"
   ],
   "changelogEn": [
-    "Hardware Device ID binding for rental scripts and renewal keys"
+    "Added built-in MCP server",
+    "Bug fixes and stability improvements"
   ]
 }
