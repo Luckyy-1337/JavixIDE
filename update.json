@@ -2,7 +2,7 @@
   "versionCode": 162,
   "versionName": "1.6.2",
   "publishedAt": "2026-11-21",
-  "mandatory": false,
+  "mandatory": true,
   "apkUrl": "https://github.com/Luckyy-1337/JavixIDE/releases/download/v1.6.2/base.apk",
   "releaseUrl": "https://github.com/luckyy-1337/JavixIDE/releases/tag/v1.6.2",
   "titleRu": "Обновление JavixIDE 1.6.2",
